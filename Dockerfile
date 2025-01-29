@@ -19,9 +19,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy Laravel files
 COPY . /var/www/html
 
+# Install Composer dependencies
+RUN composer install --no-dev --optimize-autoloader
+
 # Set correct Apache document root to Laravel's public folder
-# RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+
 # Set ServerName to avoid warning
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
@@ -29,7 +32,8 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 
 # Give necessary permissions
-RUN chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Restart Apache
 CMD ["apache2-foreground"]
