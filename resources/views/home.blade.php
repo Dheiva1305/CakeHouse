@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <title>@yield('title') - Cakehouse </title>    
-        <link rel="icon" type="image/x-icon" href="{{ asset('assets/media/images') }}/{{ $fav_icon->value }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/media/images') }}/{{ $fav_icon->value ?? '' }}">
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
