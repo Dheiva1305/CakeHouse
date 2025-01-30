@@ -8,7 +8,7 @@
             <a class="navbar-brand" href="#">
                 <div class="mainlogo">
                     <!-- <img src="{{asset('frontend/images/cake1.png') }}" alt="logo" width="50px"> -->
-                    <img src="{{ asset('assets/media/images')}}/{{ $site_logo->value }}" alt="Favicon" width="80px">
+                    <img src="{{ asset('assets/media/images')}}/{{ $site_logo->value ?? '' }}" alt="Favicon" width="80px">
                 </div> 
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
