@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
                 <div class="footer-logo">
-                    <img src="{{ asset('assets/media/images')}}/{{ $site_logo->value }}" alt="Favicon" width="80px">
+                    <img src="{{ asset('assets/media/images')}}/{{ $site_logo->value ?? '' }}" alt="Favicon" width="80px">
                 </div>
                 <div class="mt-4">
                     <p class="mb-3 text-truncate-2">
