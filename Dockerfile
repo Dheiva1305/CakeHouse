@@ -32,8 +32,11 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 
 # Give necessary permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 storage bootstrap/cache && \
+    chown -R www-data:www-data storage bootstrap/cache && \
+    php artisan key:generate && \
+    php artisan config:clear && \
+    php artisan cache:clear
 
 # Ensure Apache listens on the correct port
 RUN sed -i 's/Listen 80/Listen 10000/' /etc/apache2/ports.conf \
