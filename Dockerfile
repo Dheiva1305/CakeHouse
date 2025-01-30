@@ -35,9 +35,12 @@ RUN a2enmod rewrite
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Restart Apache
-CMD ["apache2-foreground"]
+# Ensure Apache listens on the correct port
+RUN sed -i 's/Listen 80/Listen 10000/' /etc/apache2/ports.conf \
+    && sed -i 's/<VirtualHost \*:80>/<VirtualHost *:10000>/' /etc/apache2/sites-available/000-default.conf
 
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
-
+# Expose the correct port
 EXPOSE 10000
+
+# Start Apache (Remove `artisan serve`)
+CMD ["apache2-foreground"]
