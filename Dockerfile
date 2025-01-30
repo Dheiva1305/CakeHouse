@@ -37,3 +37,7 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Restart Apache
 CMD ["apache2-foreground"]
+
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
+
+EXPOSE 10000
