@@ -35,6 +35,9 @@ USER appuser
 # Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# Switch to root user to modify Apache config
+USER root
+
 # Set correct Apache document root to Laravel's public folder
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
