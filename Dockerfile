@@ -4,7 +4,7 @@ FROM php:8.2-apache
 # Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies
+# Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     zip \
@@ -16,8 +16,11 @@ RUN apt-get update && apt-get install -y \
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy Laravel files
+# Copy Laravel files (including .env.example)
 COPY . /var/www/html
+
+# Ensure .env file is present (if not, create it from .env.example)
+RUN if [ ! -f /var/www/html/.env ]; then cp /var/www/html/.env.example /var/www/html/.env; fi
 
 # Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
@@ -31,7 +34,7 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 # Enable Apache mod_rewrite for Laravel routes
 RUN a2enmod rewrite
 
-# Give necessary permissions
+# Give necessary permissions for storage and cache, and run artisan commands
 RUN chmod -R 775 storage bootstrap/cache && \
     chown -R www-data:www-data storage bootstrap/cache && \
     php artisan key:generate && \
