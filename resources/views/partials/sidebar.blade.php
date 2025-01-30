@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <title>Cakehouse </title>    
-        <link rel="icon" type="image/x-icon" href="{{ asset('assets/media/images/'. $fav_icon->value) }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/media/images/'. $fav_icon->value ?? '') }}">
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -37,7 +37,7 @@
     <body>
         <div class="sidebar">
             <div class="logo-details">
-                <img src="{{ asset('assets/media/images/'. $fav_icon->value) }}" alt="" width="50px">
+                <img src="{{ asset('assets/media/images/'. $fav_icon->value ?? '') }}" alt="" width="50px">
             </div>
             <ul class="nav-links">
                 <li class="{{ request()->routeIs('admin.home') ? 'active' : '' }}">
@@ -98,7 +98,7 @@
             </div>
         </section>
         <section class="">
-            <div class="container-fluid mt-5 d-flex justify-content-center" >{{$copy_rights->value}}</div>
+            <div class="container-fluid mt-5 d-flex justify-content-center" >{{$copy_rights->value ?? ''}}</div>
         </section>
         
     </body>
