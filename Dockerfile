@@ -11,7 +11,11 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    && docker-php-ext-install pdo pdo_mysql gd
+    && docker-php-ext-install pdo pdo_mysql gd \
+    && apt-get clean
+
+# Create a non-root user to run Composer
+RUN useradd -ms /bin/bash appuser
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -21,6 +25,12 @@ COPY . /var/www/html
 
 # Ensure .env file is present (if not, create it from .env.example)
 RUN if [ ! -f /var/www/html/.env ]; then cp /var/www/html/.env.example /var/www/html/.env; fi
+
+# Change ownership of the project files
+RUN chown -R appuser:appuser /var/www/html
+
+# Switch to non-root user to run Composer
+USER appuser
 
 # Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
