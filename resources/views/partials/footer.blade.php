@@ -28,7 +28,7 @@
                 </div>
                 <div class="mt-4">
                     <p class="mb-3 text-truncate-2">
-                    {{ $footer_text->value }}
+                    {{ $footer_text->value ?? '' }}
                     </p>
                 </div>
             </div>
@@ -52,23 +52,23 @@
                     </div>
                     <p class="m-0 ">Call Us : </p>
                 </div>
-                <p class="ml-4 number ">{{ $contact_number->value }}</p>
+                <p class="ml-4 number ">{{ $contact_number->value ?? '' }}</p>
                 <div class="d-flex align-items-center">
                     <div class="footer-p">
                         <i class="fas fa-envelope footer-mail"></i>
                     </div>
                     <p class="m-0 ">Mail Us : </p>
                 </div>
-                <p class="ml-4 number ">{{ $contact_mail->value }}</p>
+                <p class="ml-4 number ">{{ $contact_mail->value ?? '' }}</p>
             </div>
 
             <div class="col-xl-3 col-lg-6 col-md-6 mb-4 d-md-block d-none">
                 <h5 class=" mb-4">FOLLOW US</h5>
                 <div class="d-flex">
-                    <a href="{{ $facebook->value }}" target="_blank"><i class="fab fa-facebook font-size margin-right icon-color"></i></a>
-                    <a href="{{ $insta->value }}" target="_blank"><i class="fab fa-instagram font-size margin-right icon-color"></i></a>
-                    <a href="{{ $twitter->value }}" target="_blank"><i class="fab fa-twitter font-size margin-right icon-color"></i></a>
-                    <a href="{{ $youtube->value }}" target="_blank"><i class="fab fa-youtube font-size margin-right icon-color"></i></a>
+                    <a href="{{ $facebook->value ?? '' }}" target="_blank"><i class="fab fa-facebook font-size margin-right icon-color"></i></a>
+                    <a href="{{ $insta->value ?? '' }}" target="_blank"><i class="fab fa-instagram font-size margin-right icon-color"></i></a>
+                    <a href="{{ $twitter->value ?? '' }}" target="_blank"><i class="fab fa-twitter font-size margin-right icon-color"></i></a>
+                    <a href="{{ $youtube->value ?? '' }}" target="_blank"><i class="fab fa-youtube font-size margin-right icon-color"></i></a>
                 </div>
             </div>
         </div>
@@ -121,14 +121,14 @@
                                     </div>
                                     <p class="m-0">Call Us</p>
                                 </div>
-                                <p class="ml-4 number">{{ $contact_number->value }}</p>
+                                <p class="ml-4 number">{{ $contact_number->value ?? '' }}</p>
                                 <div class="d-flex align-items-center">
                                     <div class="footer-p">
                                     <i class="fas fa-envelope footer-mail"></i>
                                     </div>
                                     <p class="m-0">Mail Us</p>
                                 </div>
-                                <p class="ml-4 number">{{ $contact_mail->value }}</p>
+                                <p class="ml-4 number">{{ $contact_mail->value ?? '' }}</p>
                             </div>
                         </div>
                     </div>
@@ -148,10 +148,10 @@
                             aria-labelledby="headingThree30" data-parent="#accordionEx1">
                             <div class="accordion-body mt-2">
                                 <div class="d-flex">
-                                    <a href="{{ $facebook->value }}" target="_blank"><i class="fab fa-facebook font-size margin-right icon-color"></i></a>
-                                    <a href="{{ $insta->value }}" target="_blank"><i class="fab fa-instagram font-size margin-right icon-color"></i></a>
-                                    <a href="{{ $twitter->value }}" target="_blank"><i class="fab fa-twitter font-size margin-right icon-color"></i></a>
-                                    <a href="{{ $youtube->value }}" target="_blank"><i class="fab fa-youtube font-size margin-right icon-color"></i></a>
+                                    <a href="{{ $facebook->value ?? '' }}" target="_blank"><i class="fab fa-facebook font-size margin-right icon-color"></i></a>
+                                    <a href="{{ $insta->value ?? '' }}" target="_blank"><i class="fab fa-instagram font-size margin-right icon-color"></i></a>
+                                    <a href="{{ $twitter->value ?? '' }}" target="_blank"><i class="fab fa-twitter font-size margin-right icon-color"></i></a>
+                                    <a href="{{ $youtube->value ?? '' }}" target="_blank"><i class="fab fa-youtube font-size margin-right icon-color"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +164,7 @@
 </div>
 
 <div class="container-fluid p-0">
-    <div class="text-center py-3 footers-bg">{{ $copy_rights->value }}</div>
+    <div class="text-center py-3 footers-bg">{{ $copy_rights->value ?? '' }}</div>
 </div>
 
 </body>
